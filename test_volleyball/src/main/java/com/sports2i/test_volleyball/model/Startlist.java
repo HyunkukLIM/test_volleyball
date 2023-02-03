@@ -1,8 +1,12 @@
 package com.sports2i.test_volleyball.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,4 +56,7 @@ public class Startlist {
 	
 	@Column(nullable = false)
 	private String participantBIB;
+	
+	@CreationTimestamp
+	private Timestamp createTime;
 }

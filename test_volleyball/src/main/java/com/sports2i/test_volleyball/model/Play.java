@@ -71,136 +71,136 @@ public class Play {
 	private String detailAction;
 	
 	@Column(nullable = true)
-	private int openTry;
+	private String openTry;
 	
 	@Column(nullable = true)
-	private int openSuccess;
+	private String openSuccess;
 	
 	@Column(nullable = true)
-	private int openBlocked;
+	private String openBlocked;
 	
 	@Column(nullable = true)
-	private int openFault;
+	private String openFault;
 	
 	@Column(nullable = true)
-	private int syncTry;
+	private String syncTry;
 	
 	@Column(nullable = true)
-	private int syncSuccess;
+	private String syncSuccess;
 	
 	@Column(nullable = true)
-	private int syncBlocked;
+	private String syncBlocked;
 	
 	@Column(nullable = true)
-	private int syncFault;
+	private String syncFault;
 	
 	@Column(nullable = true)
-	private int slideTry;
+	private String slideTry;
 	
 	@Column(nullable = true)
-	private int slideSuccess;
+	private String slideSuccess;
 	
 	@Column(nullable = true)
-	private int slideBlocked;
+	private String slideBlocked;
 	
 	@Column(nullable = true)
-	private int slideFault;
+	private String slideFault;
 	
 	@Column(nullable = true)
-	private int backTry;
+	private String backTry;
 	
 	@Column(nullable = true)
-	private int backSuccess;
+	private String backSuccess;
 	
 	@Column(nullable = true)
-	private int backBlocked;
+	private String backBlocked;
 	
 	@Column(nullable = true)
-	private int backFault;
+	private String backFault;
 	
 	@Column(nullable = true)
-	private int quickTry;
+	private String quickTry;
 	
 	@Column(nullable = true)
-	private int quickSuccess;
+	private String quickSuccess;
 	
 	@Column(nullable = true)
-	private int quickBlocked;
+	private String quickBlocked;
 	
 	@Column(nullable = true)
-	private int quickFault;
+	private String quickFault;
 	
 	@Column(nullable = true)
-	private int cQuickTry;
+	private String cQuickTry;
 	
 	@Column(nullable = true)
-	private int cQuickSuccess;
+	private String cQuickSuccess;
 	
 	@Column(nullable = true)
-	private int cQuickBlocked;
+	private String cQuickBlocked;
 	
 	@Column(nullable = true)
-	private int cQuickFault;
+	private String cQuickFault;
 	
 	@Column(nullable = true)
-	private int serveTry;
+	private String serveTry;
 	
 	@Column(nullable = true)
-	private int serveSuccess;
+	private String serveSuccess;
 	
 	@Column(nullable = true)
-	private int serveBlocked;
+	private String serveBlocked;
 	
 	@Column(nullable = true)
-	private int serveFault;
+	private String serveFault;
 	
 	@Column(nullable = true)
-	private int digTry;
+	private String digTry;
 	
 	@Column(nullable = true)
-	private int digSuccess;	
+	private String digSuccess;	
 	
 	@Column(nullable = true)
-	private int digFault;
+	private String digFault;
 	
 	@Column(nullable = true)
-	private int setTry;
+	private String setTry;
 	
 	@Column(nullable = true)
-	private int setSuccess;
+	private String setSuccess;
 	
 	@Column(nullable = true)
-	private int setBlocked;
+	private String setBlocked;
 	
 	@Column(nullable = true)
-	private int setFault;
+	private String setFault;
 	
 	@Column(nullable = true)
-	private int receiveTry;
+	private String receiveTry;
 	
 	@Column(nullable = true)
-	private int receiveSuccess;
+	private String receiveSuccess;
 	
 	@Column(nullable = true)
-	private int receiveFailure;
+	private String receiveFailure;
 	
 	@Column(nullable = true)
-	private int blockTry;
+	private String blockTry;
 	
 	@Column(nullable = true)
-	private int blockSuccess;
+	private String blockSuccess;
 	
 	@Column(nullable = true)
-	private int blockEffective;
+	private String blockEffective;
 	
 	@Column(nullable = true)
-	private int blockFailure;
+	private String blockFailure;
 	
 	@Column(nullable = true)
-	private int blockFault;
+	private String blockFault;
 	
 	@Column(nullable = true)
-	private int blockAssist;
+	private String blockAssist;
 	
 	@Column(nullable = true)
 	private int penalty;

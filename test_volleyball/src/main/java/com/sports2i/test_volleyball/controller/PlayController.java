@@ -42,6 +42,11 @@ public class PlayController {
 		
 //		playService.savePlayInfo(request);
 		
+		// 입력된 경기 상세 테이블을 바탕으로 연산을 실행하여 값(숫자)을 선수 및 팀 누적 기록 테이블에 저장
+		// 경기 종료 후 경기 상세 테이블을 바탕으로 연산을 실행하여 값(숫자)을 선수 및 팀 범실 누적 기록 테이블에 저장
+		
+		
+		
 		return new ResponseDto<>(HttpStatus.OK.value(), 1);
 	}
 }

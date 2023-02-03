@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sports2i.test_volleyball.dto.PlayDto;
+import com.sports2i.test_volleyball.model.Actiondictionary;
 import com.sports2i.test_volleyball.model.Play;
 import com.sports2i.test_volleyball.model.Startlist;
+import com.sports2i.test_volleyball.repository.ActiondictionaryRepository;
 import com.sports2i.test_volleyball.repository.PlayRepository;
 import com.sports2i.test_volleyball.repository.StartlistRepository;
 
@@ -22,6 +24,9 @@ public class PlayService {
 	
 	@Autowired
 	private StartlistRepository startlistRepository;
+	
+	@Autowired
+	private ActiondictionaryRepository actiondictionaryRepository;
 	
 	@Transactional
 	public List<Startlist> searchPlayerList() {
@@ -65,11 +70,22 @@ public class PlayService {
 	public void savePlayInfo(PlayDto.Request dto) {
 //		System.out.print(dto.toEntity());
 		
-		String action = dto.getMainAction().toString();		
+		// 입력기에서 들어온 코드를 경기 상세 테이블에서는 곧바로 저장
 		
+		Actiondictionary statData = new Actiondictionary();
 		
-
-		playRepository.save(dto.toEntity());		
+		String strActionCode = dto.getMainAction().toString().substring(2);
+		
+		statData = actiondictionaryRepository.findBymainCode(strActionCode);
+		
+		String strStatColumn = statData.getStatColumn();
+		
+		switch(strStatColumn) {
+			case "serveSuccess" : dto.setServeSuccess(strActionCode);
+			break;
+		}
+		
+		playRepository.save(dto.toEntity());
 	}
 
 }

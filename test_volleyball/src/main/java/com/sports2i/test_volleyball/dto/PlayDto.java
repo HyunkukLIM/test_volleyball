@@ -26,63 +26,63 @@ public class PlayDto {
 		private String participantId;
 		private String mainAction;
 		private String detailAction;
-		private int openTry;
-		private int openSuccess;
-		private int openBlocked;
-		private int openFault;
-		private int syncTry;
-		private int syncSuccess;
-		private int syncBlocked;
-		private int syncFault;
-		private int slideTry;
-		private int slideSuccess;
-		private int slideBlocked;
-		private int slideFault;
-		private int backTry;
-		private int backSuccess;
-		private int backBlocked;
-		private int backFault;
-		private int quickTry;
-		private int quickSuccess;
-		private int quickBlocked;
-		private int quickFault;
-		private int cQuickTry;
-		private int cQuickSuccess;
-		private int cQuickBlocked;
-		private int cQuickFault;
-		private int serveTry;
-		private int serveSuccess;
-		private int serveBlocked;
-		private int serveFault;
-		private int digTry;
-		private int digSuccess;	
-		private int digFault;
-		private int setTry;
-		private int setSuccess;
-		private int setBlocked;
-		private int setFault;
-		private int receiveTry;
-		private int receiveSuccess;
-		private int receiveFailure;
-		private int blockTry;
-		private int blockSuccess;
-		private int blockEffective;
-		private int blockFailure;
-		private int blockFault;
-		private int blockAssist;
+		private String openTry;
+		private String openSuccess;
+		private String openBlocked;
+		private String openFault;
+		private String syncTry;
+		private String syncSuccess;
+		private String syncBlocked;
+		private String syncFault;
+		private String slideTry;
+		private String slideSuccess;
+		private String slideBlocked;
+		private String slideFault;
+		private String backTry;
+		private String backSuccess;
+		private String backBlocked;
+		private String backFault;
+		private String quickTry;
+		private String quickSuccess;
+		private String quickBlocked;
+		private String quickFault;
+		private String cQuickTry;
+		private String cQuickSuccess;
+		private String cQuickBlocked;
+		private String cQuickFault;
+		private String serveTry;
+		private String serveSuccess;
+		private String serveBlocked;
+		private String serveFault;
+		private String digTry;
+		private String digSuccess;	
+		private String digFault;
+		private String setTry;
+		private String setSuccess;
+		private String setBlocked;
+		private String setFault;
+		private String receiveTry;
+		private String receiveSuccess;
+		private String receiveFailure;
+		private String blockTry;
+		private String blockSuccess;
+		private String blockEffective;
+		private String blockFailure;
+		private String blockFault;
+		private String blockAssist;
 		private int penalty;
 		private int totalFault;
 		
 		@Builder
 		private Request(String competitionCode, String gender, String gameCode, int setNum, int rallySeq, int homeScore, int awayScore,
-				String teamId, String participantId, String mainAction, String detailAction, int openTry, int openSuccess, int openBlocked, int openFault,
-				int syncTry, int syncSuccess, int syncBlocked, int syncFault, int slideTry, int slideSuccess,
-				int slideBlocked, int slideFault, int backTry, int backSuccess, int backBlocked, int backFault,
-				int quickTry, int quickSuccess, int quickBlocked, int quickFault, int cQuickTry, int cQuickSuccess,
-				int cQuickBlocked, int cQuickFault, int serveTry, int serveSuccess, int serveBlocked, int serveFault,
-				int digTry, int digSuccess, int digFault, int setTry, int setSuccess, int setBlocked, int setFault,
-				int receiveTry, int receiveSuccess, int receiveFailure, int blockTry, int blockSuccess,
-				int blockEffective, int blockFailure, int blockFault, int blockAssist, int penalty, int totalFault) {
+				String teamId, String participantId, String mainAction, String detailAction, String openTry, String openSuccess, String openBlocked, String openFault,
+				String syncTry, String syncSuccess, String syncBlocked, String syncFault, String slideTry, String slideSuccess,
+				String slideBlocked, String slideFault, String backTry, String backSuccess, String backBlocked, String backFault,
+				String quickTry, String quickSuccess, String quickBlocked, String quickFault, String cQuickTry, String cQuickSuccess,
+				String cQuickBlocked, String cQuickFault, String serveTry, String serveSuccess, String serveBlocked, String serveFault,
+				String digTry, String digSuccess, String digFault, String setTry, String setSuccess, String setBlocked, String setFault,
+				String receiveTry, String receiveSuccess, String receiveFailure, String blockTry, String blockSuccess,
+				String blockEffective, String blockFailure, String blockFault, String blockAssist, int penalty, int totalFault) {
 			super();
 			this.competitionCode = competitionCode;
 			this.gender = gender;
@@ -221,50 +221,50 @@ public class PlayDto {
 		private String participantId;
 		private String mainAction;
 		private String detailAction;
-		private int openTry;
-		private int openSuccess;
-		private int openBlocked;
-		private int openFault;
-		private int syncTry;
-		private int syncSuccess;
-		private int syncBlocked;
-		private int syncFault;
-		private int slideTry;
-		private int slideSuccess;
-		private int slideBlocked;
-		private int slideFault;
-		private int backTry;
-		private int backSuccess;
-		private int backBlocked;
-		private int backFault;
-		private int quickTry;
-		private int quickSuccess;
-		private int quickBlocked;
-		private int quickFault;
-		private int cQuickTry;
-		private int cQuickSuccess;
-		private int cQuickBlocked;
-		private int cQuickFault;
-		private int serveTry;
-		private int serveSuccess;
-		private int serveBlocked;
-		private int serveFault;
-		private int digTry;
-		private int digSuccess;	
-		private int digFault;
-		private int setTry;
-		private int setSuccess;
-		private int setBlocked;
-		private int setFault;
-		private int receiveTry;
-		private int receiveSuccess;
-		private int receiveFailure;
-		private int blockTry;
-		private int blockSuccess;
-		private int blockEffective;
-		private int blockFailure;
-		private int blockFault;
-		private int blockAssist;
+		private String openTry;
+		private String openSuccess;
+		private String openBlocked;
+		private String openFault;
+		private String syncTry;
+		private String syncSuccess;
+		private String syncBlocked;
+		private String syncFault;
+		private String slideTry;
+		private String slideSuccess;
+		private String slideBlocked;
+		private String slideFault;
+		private String backTry;
+		private String backSuccess;
+		private String backBlocked;
+		private String backFault;
+		private String quickTry;
+		private String quickSuccess;
+		private String quickBlocked;
+		private String quickFault;
+		private String cQuickTry;
+		private String cQuickSuccess;
+		private String cQuickBlocked;
+		private String cQuickFault;
+		private String serveTry;
+		private String serveSuccess;
+		private String serveBlocked;
+		private String serveFault;
+		private String digTry;
+		private String digSuccess;	
+		private String digFault;
+		private String setTry;
+		private String setSuccess;
+		private String setBlocked;
+		private String setFault;
+		private String receiveTry;
+		private String receiveSuccess;
+		private String receiveFailure;
+		private String blockTry;
+		private String blockSuccess;
+		private String blockEffective;
+		private String blockFailure;
+		private String blockFault;
+		private String blockAssist;
 		private int penalty;
 		private int totalFault;
 		
