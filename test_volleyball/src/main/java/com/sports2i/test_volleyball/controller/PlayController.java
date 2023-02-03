@@ -19,10 +19,10 @@ public class PlayController {
 	@Autowired
 	private PlayService playService;
 	
-	@GetMapping("/api/play/selectLastRally")
-	public ResponseDto<?> searchLastRally () {
-		System.out.println("여기까지 들어옴");
-		return new ResponseDto<>(HttpStatus.OK.value(), playService.searchLastRally());
+	@GetMapping("/api/play/selectPlayerList")
+	public ResponseDto<?> searchPlayerList () {
+//		System.out.println("여기까지 들어옴");
+		return new ResponseDto<>(HttpStatus.OK.value(), playService.searchPlayerList());
 	}
 	
 	@GetMapping("/api/play/selectPlayList")
@@ -32,15 +32,15 @@ public class PlayController {
 	}	
 	
 	@PostMapping("/api/play/insertPlay")
-	public ResponseDto<Integer> savePlayInfo(@RequestBody PlayDto.Request request) {
+	public ResponseDto<?> savePlayInfo(@RequestBody List<PlayDto.Request> requests) {
 //		System.out.println(request);
 		
-//		for(PlayDto.Request request : requests) {
-//			System.out.println(request);
-//			playService.savePlayInfo(request);
-//		}
+		for(PlayDto.Request request : requests) {
+			//System.out.println(request);
+			playService.savePlayInfo(request);
+		}
 		
-		playService.savePlayInfo(request);
+//		playService.savePlayInfo(request);
 		
 		return new ResponseDto<>(HttpStatus.OK.value(), 1);
 	}

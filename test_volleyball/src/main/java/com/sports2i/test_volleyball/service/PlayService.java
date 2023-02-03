@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sports2i.test_volleyball.dto.PlayDto;
+import com.sports2i.test_volleyball.model.Play;
+import com.sports2i.test_volleyball.model.Startlist;
 import com.sports2i.test_volleyball.repository.PlayRepository;
+import com.sports2i.test_volleyball.repository.StartlistRepository;
 
 @Service
 public class PlayService {
@@ -17,31 +20,55 @@ public class PlayService {
 	@Autowired
 	private PlayRepository playRepository;
 	
+	@Autowired
+	private StartlistRepository startlistRepository;
+	
 	@Transactional
-	public List<PlayDto.Response> searchLastRally() {
+	public List<Startlist> searchPlayerList() {
 		
-		List<Integer> listLastRally = new ArrayList<>();
-		
-		listLastRally = playRepository.findLastActionList();
-		
-		return null;
+		return startlistRepository.findAll();
 	}
 	
 	@Transactional
-	public List<PlayDto.Response> searchPlayList() {
+	public List<Object> searchPlayList() {
+				
+		List<Play> listPlayList = new ArrayList<>();
+		List<Object> listTotalPlay = new ArrayList<>();
+		List<Integer> listLastRally = new ArrayList<>();
 		
-		List<PlayDto.Response> listPlayResponseDto = new ArrayList<>();
+		listLastRally = playRepository.findLastActionList();
+		listPlayList = playRepository.findByActionList();
 		
-		playRepository.findByActionList().forEach(play -> {
-			listPlayResponseDto.add(new PlayDto.Response(play));
-		});
-		return listPlayResponseDto;
+		for(Integer iRallySeq : listLastRally) {
+			
+			List<PlayDto.Response> listPlayResponseDto = new ArrayList<>();
+			
+			for (Play play : listPlayList) {				
+				if (iRallySeq == play.getRallySeq())
+					listPlayResponseDto.add(new PlayDto.Response(play));
+			}
+			
+			listTotalPlay.add(listPlayResponseDto);			
+		}
+		
+		return listTotalPlay;
+		
+//		List<PlayDto.Response> listPlayResponseDto = new ArrayList<>();
+		
+//		playRepository.findByActionList().forEach(play -> {
+//			listPlayResponseDto.add(new PlayDto.Response(play));
+//		});
+//		return listPlayResponseDto;
 	}
 	
 	@Transactional
 	public void savePlayInfo(PlayDto.Request dto) {
 //		System.out.print(dto.toEntity());
 		
+		String action = dto.getMainAction().toString();		
+		
+		
+
 		playRepository.save(dto.toEntity());		
 	}
 
