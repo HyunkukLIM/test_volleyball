@@ -13,24 +13,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Builder
-public class Startlist {
+public class Teamroster {
 	
 	@Column(nullable = false)
-	private String competitionCode;
-	
-	@Column(nullable = false)
-	private String gender;
-	
-	@Column(nullable = false)
-	private String gameCode;
-	
-	@Column(nullable = false)
-	private String homeAway;
+	private int participantOrder;
 	
 	@Column(nullable = false)
 	private String teamId;
@@ -39,19 +31,16 @@ public class Startlist {
 	private String teamName;
 	
 	@Column(nullable = false)
-	private String startingReserve;
+	private String role;
+	
+	@Column(nullable = false)
+	private String participantName;
 	
 	@Id
 	@Column(nullable = false)
 	private String participantId;
 	
-	@Column(nullable = false)
-	private int startingOrder;
-	
-	@Column(nullable = false)
-	private String participantName;
-	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String participantPosition;
 	
 	@Column(nullable = false)

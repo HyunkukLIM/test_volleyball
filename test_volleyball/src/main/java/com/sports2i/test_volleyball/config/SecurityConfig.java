@@ -23,7 +23,9 @@ public class SecurityConfig {
 	        .csrf().disable() //csrf 토큰 비활성화 (테스트시 걸어두는게 좋음)
 	        
 	        .authorizeRequests()
-	        .antMatchers("/","/auth/**","/js/**","/css/**", "/images/**", "/api/play/**").permitAll()
+	        .antMatchers("/","/auth/**","/js/**","/css/**", "/images/**",
+	        		"/api/play/**", "/api/startlist/**", "/api/team/**", 
+	        		"/api/game/**", "/api/stats/**", "/api/code/**" ).permitAll()
 	            .anyRequest()
 	            .authenticated()
 	        

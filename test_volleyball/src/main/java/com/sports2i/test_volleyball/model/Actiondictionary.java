@@ -40,5 +40,5 @@ public class Actiondictionary {
 	private String statValue;
 	
 	@CreationTimestamp
-	private Timestamp createTime;
+	private Timestamp createdTime;
 }

@@ -27,10 +27,10 @@ public class Play {
 	private String competitionCode;
 	
 	@Column(nullable = false)
-	private String gender;
+	private String gameCode;
 	
 	@Column(nullable = false)
-	private String gameCode;
+	private String gender;
 	
 	@Id
 	@Column(nullable = false)
@@ -44,7 +44,7 @@ public class Play {
 	private int rallySeq;
 	
 	@CreationTimestamp
-	private Timestamp createTime;
+	private Timestamp createdTime;
 	
 	@Column(nullable = true)
 	private int homeScore;

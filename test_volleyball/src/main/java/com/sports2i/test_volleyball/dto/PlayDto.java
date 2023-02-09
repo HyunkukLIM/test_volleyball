@@ -1,5 +1,7 @@
 package com.sports2i.test_volleyball.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.sports2i.test_volleyball.model.Play;
 
 import lombok.Builder;
@@ -10,8 +12,8 @@ import lombok.Getter;
 public class PlayDto {
 	
 	@Data
+	@JsonInclude(Include.NON_NULL)
 //	@AllArgsConstructor
-//	@JsonInclude(Include.NON_NULL)
 //	@Builder
 	public static class Request {
 		
@@ -172,10 +174,10 @@ public class PlayDto {
 					.backSuccess(backSuccess)
 					.backBlocked(backBlocked)
 					.backFault(backFault)
-					.quickTry(cQuickTry)
-					.quickSuccess(cQuickSuccess)
-					.quickBlocked(cQuickBlocked)
-					.quickFault(cQuickFault)
+					.quickTry(quickTry)
+					.quickSuccess(quickSuccess)
+					.quickBlocked(quickBlocked)
+					.quickFault(quickFault)
 					.cQuickTry(cQuickTry)
 					.cQuickSuccess(cQuickSuccess)
 					.cQuickBlocked(cQuickBlocked)
