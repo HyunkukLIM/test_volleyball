@@ -6,7 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Builder
+@DynamicInsert
 public class Game {
 
 	@Column(nullable = false)
@@ -32,7 +35,6 @@ public class Game {
 	@Column(nullable = false)
 	private int gameNum;
 	
-	@Id
 	@Column(nullable = false)
 	private String gameCode;
 	
@@ -57,6 +59,10 @@ public class Game {
 	@Column(nullable = true)
 	private String broadcaster;
 	
+	@Id
+	@Column(nullable = true)
+	private int setNum;
+	
 	@Column(nullable = false)
 	private String homeTeam;
 	
@@ -70,23 +76,36 @@ public class Game {
 	private String awayWL;
 	
 	@Column(nullable = true)
-	private String homeScore;
+	@ColumnDefault("0")
+	private int homeSetScore;
 	
 	@Column(nullable = true)
-	private String awayScore;
+	@ColumnDefault("0")
+	private int awaySetScore;
 	
 	@Column(nullable = true)
-	private String firstSetTime;
+	@ColumnDefault("0")
+	private int homeScore;
+
+	@Column(nullable = true)
+	@ColumnDefault("0")
+	private int awayScore;
 	
 	@Column(nullable = true)
-	private String secondSetTime;
+	@ColumnDefault("0")
+	private int homeScoreSum;	
 	
 	@Column(nullable = true)
-	private String thirdSetTime;
+	@ColumnDefault("0")
+	private int awayScoreSum;
 	
 	@Column(nullable = true)
-	private String fourthSetTime;
+	private String setTime;
 	
 	@Column(nullable = true)
-	private String fifthSetTime;
+	private String totalSetTime;
+	
+	@Column(nullable = true)
+	private String spectatorNumber;
+
 }

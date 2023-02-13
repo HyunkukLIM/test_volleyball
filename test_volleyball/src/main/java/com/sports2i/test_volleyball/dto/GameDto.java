@@ -1,7 +1,5 @@
 package com.sports2i.test_volleyball.dto;
 
-import javax.persistence.Column;
-
 import com.sports2i.test_volleyball.model.Game;
 
 import lombok.Builder;
@@ -28,20 +26,23 @@ public class GameDto {
 		private String awayTeam;
 		private String homeWL;
 		private String awayWL;
-		private String homeScore;
-		private String awayScore;
-		private String firstSetTime;
-		private String secondSetTime;
-		private String thirdSetTime;
-		private String fourthSetTime;
-		private String fifthSetTime;
+		private int setNum;
+		private int homeSetScore;
+		private int awaySetScore;		
+		private int homeScore;
+		private int awayScore;
+		private int homeScoreSum;
+		private int awayScoreSum;
+		private String setTime;
+		private String totalSetTime;;
+		private String spectatorNumber;
 		
 		@Builder
 		public Request(String competitionCode, String gender, int roundSeq, int gameNum, String gameCode,
 				String gameDate, String gameDay, String gameTime, String gameLocation, String gameStatus,
-				String broadcaster, String homeTeam, String awayTeam, String homeWL, String awayWL, String homeScore,
-				String awayScore, String firstSetTime, String secondSetTime, String thirdSetTime, String fourthSetTime,
-				String fifthSetTime) {
+				String broadcaster, String homeTeam, String awayTeam, String homeWL, String awayWL, int setNum,
+				int homeSetScore, int awaySetScore, int homeScore, int awayScore, int homeScoreSum,
+				int awayScoreSum, String setTime, String totalSetTime, String spectatorNumber) {
 			super();
 			this.competitionCode = competitionCode;
 			this.gender = gender;
@@ -58,13 +59,16 @@ public class GameDto {
 			this.awayTeam = awayTeam;
 			this.homeWL = homeWL;
 			this.awayWL = awayWL;
+			this.setNum = setNum;
+			this.homeSetScore = homeSetScore;
+			this.awaySetScore = awaySetScore;
 			this.homeScore = homeScore;
 			this.awayScore = awayScore;
-			this.firstSetTime = firstSetTime;
-			this.secondSetTime = secondSetTime;
-			this.thirdSetTime = thirdSetTime;
-			this.fourthSetTime = fourthSetTime;
-			this.fifthSetTime = fifthSetTime;
+			this.homeScoreSum = homeScoreSum;
+			this.awayScoreSum = awayScoreSum;
+			this.setTime = setTime;
+			this.totalSetTime = totalSetTime;
+			this.spectatorNumber = spectatorNumber;
 		}
 		
 		public Game toEntity() {
@@ -84,16 +88,19 @@ public class GameDto {
 					.awayTeam(awayTeam)
 					.homeWL(homeWL)
 					.awayWL(awayWL)
+					.setNum(setNum)
+					.homeSetScore(homeSetScore)
+					.awaySetScore(awaySetScore)
 					.homeScore(homeScore)
 					.awayScore(awayScore)
-					.firstSetTime(firstSetTime)
-					.secondSetTime(secondSetTime)
-					.thirdSetTime(thirdSetTime)
-					.fourthSetTime(fourthSetTime)
-					.fifthSetTime(fifthSetTime)
+					.homeScoreSum(homeScoreSum)
+					.awayScoreSum(awayScoreSum)
+					.setTime(setTime)
+					.totalSetTime(totalSetTime)					
+					.spectatorNumber(spectatorNumber)
 					.build();
 			return game;
-		}
+		}		
 	}
 	
 	@Getter
@@ -114,13 +121,16 @@ public class GameDto {
 		private String awayTeam;
 		private String homeWL;
 		private String awayWL;
-		private String homeScore;
-		private String awayScore;
-		private String firstSetTime;
-		private String secondSetTime;
-		private String thirdSetTime;
-		private String fourthSetTime;
-		private String fifthSetTime;
+		private int setNum;
+		private int homeSetScore;
+		private int awaySetScore;		
+		private int homeScore;
+		private int awayScore;
+		private int homeScoreSum;
+		private int awayScoreSum;
+		private String setTime;
+		private String totalSetTime;;
+		private String spectatorNumber;
 		
 		
 		public Response(Game game) {
@@ -140,13 +150,16 @@ public class GameDto {
 			this.awayTeam = game.getAwayTeam();
 			this.homeWL = game.getHomeWL();
 			this.awayWL = game.getAwayWL();
+			this.setNum = game.getSetNum();
+			this.homeSetScore = game.getHomeSetScore();
+			this.awaySetScore = game.getAwaySetScore();
 			this.homeScore = game.getHomeScore();
-			this.awayScore = game.getAwayScore();			
-			this.firstSetTime = game.getFirstSetTime();
-			this.secondSetTime = game.getSecondSetTime();
-			this.thirdSetTime = game.getThirdSetTime();
-			this.fourthSetTime = game.getFourthSetTime();
-			this.fifthSetTime = game.getFifthSetTime();
+			this.awayScore = game.getAwayScore();
+			this.homeScoreSum = game.getHomeScoreSum();
+			this.awayScoreSum = game.getAwayScoreSum();
+			this.setTime = game.getSetTime();
+			this.totalSetTime = game.getTotalSetTime();
+			this.spectatorNumber = game.getSpectatorNumber();
 		}
 	}
 }

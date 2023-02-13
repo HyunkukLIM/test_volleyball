@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sports2i.test_volleyball.dto.PlayDto;
 import com.sports2i.test_volleyball.dto.ResponseDto;
-import com.sports2i.test_volleyball.model.Game;
-import com.sports2i.test_volleyball.service.GameService;
+import com.sports2i.test_volleyball.service.ComputingService;
 import com.sports2i.test_volleyball.service.PlayService;
 
 @RestController
@@ -22,7 +21,7 @@ public class PlayController {
 	private PlayService playService;
 	
 	@Autowired
-	private GameService gameService;
+	private ComputingService computingService;
 	
 	@GetMapping("/api/play/selectPlayList")
 	public ResponseDto<?> searchPlayList () {
@@ -34,12 +33,8 @@ public class PlayController {
 	public ResponseDto<?> searchCurrentScore () {
 //		System.out.println("여기까지 들어옴");
 		
-		int iLastRallySeq = 3;
-		
-		PlayDto.Response response = playService.searchCurrentScore(iLastRallySeq);
-		
-		return new ResponseDto<>(HttpStatus.OK.value(), 1);
-	}
+		return new ResponseDto<>(HttpStatus.OK.value(), playService.searchCurrentScore());
+	}	
 	
 	@PostMapping("/api/play/insertPlay")
 	public ResponseDto<?> savePlayInfo(@RequestBody List<PlayDto.Request> requests) {
@@ -51,15 +46,13 @@ public class PlayController {
 			//System.out.println(request);
 			
 			playService.savePlayInfo(request, iLastRallySeq);
-		}		
-		
-//		PlayDto.Response response = playService.searchCurrentScore(iLastRallySeq);
-		
-//		gameService.updateGameInfo(iLastRallySeq);
+		}
 		
 		// 입력된 경기 상세 테이블을 바탕으로 연산을 실행하여 값(숫자)을 선수 및 팀 누적 기록 테이블에 저장
 		// 경기 종료 후 경기 상세 테이블을 바탕으로 연산을 실행하여 값(숫자)을 선수 및 팀 범실 누적 기록 테이블에 저장
-
+		
+		computingService.updateScore();
+		computingService.updateSetScore();
 		
 		return new ResponseDto<>(HttpStatus.OK.value(), 1);
 	}

@@ -1,6 +1,7 @@
 package com.sports2i.test_volleyball.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,10 +14,12 @@ public interface PlayRepository extends JpaRepository<Play, Integer>{
 	
 //	Play findByRallySeq(int iLastRallySeq);
 	
-	@Query(value = "SELECT * "
+	@Query(value = " SELECT setNum, "
+			+ " SUM(homeScore) AS homeScore,"
+			+ " SUM(awayScore) AS awayScore"
 			+ " FROM PLAY "
-			+ " WHERE rallySeq = ?1 ", nativeQuery = true)
-	Play findByRallySeq(int iLastRallySeq);
+			+ " GROUP BY setNum ", nativeQuery = true)
+	Map<String, String> findCurrentScore();
 	
 	Play findByActionSeq(int actionSeq);
 	

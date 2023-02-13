@@ -1,13 +1,16 @@
 package com.sports2i.test_volleyball.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sports2i.test_volleyball.dto.GameDto;
 import com.sports2i.test_volleyball.dto.PlayDto;
 import com.sports2i.test_volleyball.model.Actiondictionary;
 import com.sports2i.test_volleyball.model.Play;
@@ -188,9 +191,12 @@ public class PlayService {
 		}
 	}
 	
-	public PlayDto.Response searchCurrentScore(int iLastRallySeq) {
+	@Transactional
+	public Map<String, String> searchCurrentScore() {
 		
-		Play play =  playRepository.findByRallySeq(iLastRallySeq);
-		return new PlayDto.Response(play);
+		Map<String, String> currentScore = new HashMap<String, String>();
+		currentScore = playRepository.findCurrentScore();
+		
+		return currentScore;
 	}
 }
