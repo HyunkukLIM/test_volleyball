@@ -46,6 +46,9 @@ public class Teamroster {
 	@Column(nullable = false)
 	private String participantBIB;
 	
+	@Column(nullable = true)
+	private String lineupStatus;
+	
 	@CreationTimestamp
 	private Timestamp createdTime;
 }
