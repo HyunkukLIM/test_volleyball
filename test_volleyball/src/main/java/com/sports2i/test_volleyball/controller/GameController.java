@@ -22,4 +22,12 @@ public class GameController {
 		return new ResponseDto<>(HttpStatus.OK.value(), gameService.searchGameInfo(strGameCode));
 	}
 	
+	@GetMapping("/api/game/selectSet")
+	public ResponseDto<?> searchSetInfo() {
+		
+		String strGameCode = "22-23VMENR3-123";
+		
+		return new ResponseDto<>(HttpStatus.OK.value(), gameService.searchSetInfo(strGameCode));
+	}
+	
 }
