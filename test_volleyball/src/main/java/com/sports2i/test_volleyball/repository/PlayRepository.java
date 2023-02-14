@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.sports2i.test_volleyball.dto.PlayDto;
 import com.sports2i.test_volleyball.model.Play;
 
 @Repository
@@ -32,6 +33,15 @@ public interface PlayRepository extends JpaRepository<Play, Integer>{
 			+ " FROM PLAY "
 			+ " GROUP BY setNum ", nativeQuery = true)
 	List<Map<String, String>> findCurrentSetScore();
+	
+	@Query(value = " SELECT"
+			+ "	mainAction, "
+			+ " teamId "
+			+ " FROM PLAY "
+			+ " WHERE teamId = 'SYSTEM' "
+			+ " ORDER BY actionSeq DESC "
+			+ " LIMIT 1 ", nativeQuery = true)
+	Map<String, String> findGameStatus();
 	
 	Play findByActionSeq(int actionSeq);
 	

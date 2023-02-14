@@ -78,6 +78,12 @@ public class PlayService {
 	}
 	
 	@Transactional
+	public Map<String, String> searchGameStatus() {
+
+		return playRepository.findGameStatus();
+	}
+	
+	@Transactional
 	public void savePlayInfo(PlayDto.Request dto, Integer iLastRallySeq) {
 //		System.out.print(dto.toEntity());
 		
