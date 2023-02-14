@@ -33,8 +33,8 @@ public class GameDto {
 		private int awayScore;
 		private int homeScoreSum;
 		private int awayScoreSum;
-		private String setTime;
-		private String totalSetTime;;
+		private int setTime;
+		private int totalSetTime;;
 		private String spectatorNumber;
 		
 		@Builder
@@ -42,7 +42,7 @@ public class GameDto {
 				String gameDate, String gameDay, String gameTime, String gameLocation, String gameStatus,
 				String broadcaster, String homeTeam, String awayTeam, String homeWL, String awayWL, int setNum,
 				int homeSetScore, int awaySetScore, int homeScore, int awayScore, int homeScoreSum,
-				int awayScoreSum, String setTime, String totalSetTime, String spectatorNumber) {
+				int awayScoreSum, int setTime, int totalSetTime, String spectatorNumber) {
 			super();
 			this.competitionCode = competitionCode;
 			this.gender = gender;
@@ -128,8 +128,8 @@ public class GameDto {
 		private int awayScore;
 		private int homeScoreSum;
 		private int awayScoreSum;
-		private String setTime;
-		private String totalSetTime;;
+		private int setTime;
+		private int totalSetTime;;
 		private String spectatorNumber;
 		
 		

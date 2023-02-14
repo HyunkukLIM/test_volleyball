@@ -60,7 +60,7 @@ public class Game {
 	private String broadcaster;
 	
 	@Id
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private int setNum;
 	
 	@Column(nullable = false)
@@ -100,10 +100,12 @@ public class Game {
 	private int awayScoreSum;
 	
 	@Column(nullable = true)
-	private String setTime;
+	@ColumnDefault(value="0")
+	private int setTime;
 	
 	@Column(nullable = true)
-	private String totalSetTime;
+	@ColumnDefault(value="0")
+	private int totalSetTime;
 	
 	@Column(nullable = true)
 	private String spectatorNumber;
