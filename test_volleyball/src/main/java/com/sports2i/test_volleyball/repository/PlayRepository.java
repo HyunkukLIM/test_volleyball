@@ -14,12 +14,24 @@ public interface PlayRepository extends JpaRepository<Play, Integer>{
 	
 //	Play findByRallySeq(int iLastRallySeq);
 	
+	@Query(value = " SELECT * "
+			+ " FROM"
+			+ " 	( "
+			+ " 		SELECT setNum, "
+			+ " 		SUM(homeScore) AS homeScore,"
+			+ " 		SUM(awayScore) AS awayScore"
+			+ " 		FROM PLAY "
+			+ " 		GROUP BY setNum "
+			+ " 	) MAIN "
+			+ " WHERE setNum = :iSetNum ", nativeQuery = true)
+	Map<String, String> findCurrentScore(int iSetNum);
+	
 	@Query(value = " SELECT setNum, "
 			+ " SUM(homeScore) AS homeScore,"
 			+ " SUM(awayScore) AS awayScore"
 			+ " FROM PLAY "
 			+ " GROUP BY setNum ", nativeQuery = true)
-	Map<String, String> findCurrentScore();
+	List<Map<String, String>> findCurrentSetScore();
 	
 	Play findByActionSeq(int actionSeq);
 	

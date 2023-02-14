@@ -192,10 +192,19 @@ public class PlayService {
 	}
 	
 	@Transactional
-	public Map<String, String> searchCurrentScore() {
+	public Map<String, String> searchCurrentScore(int iSetNum) {
 		
-		Map<String, String> currentScore = new HashMap<String, String>();
-		currentScore = playRepository.findCurrentScore();
+		Map<String, String> currentScore = new HashMap<>();
+		currentScore = playRepository.findCurrentScore(iSetNum);
+		
+		return currentScore;
+	}
+	
+	@Transactional
+	public List<Map<String, String>> searchCurrentSetScore() {
+		
+		List<Map<String, String>> currentScore = new ArrayList<>();
+		currentScore = playRepository.findCurrentSetScore();
 		
 		return currentScore;
 	}
