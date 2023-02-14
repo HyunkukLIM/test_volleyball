@@ -18,14 +18,17 @@ public interface GameRepository extends JpaRepository<Game, Integer>{
 	
 	@Query(value = "SELECT * "
 			+ " FROM GAME "
-			+ " WHERE setNum = 0 ", nativeQuery = true)
-	Game searchsetByGameCode(String strGameCode);
+			+ " WHERE gameCode = :strGameCode "
+			+ " AND setNum = 0 ", nativeQuery = true)
+	Game searchGameByGameCode(String strGameCode);
 
 	@Modifying
 	@Transactional
 	@Query(value = "UPDATE GAME "
 			+ " SET homeSetScore = :iHomeSetScore, "
-			+ "		awaySetScore = :iAwaySetScore "
+			+ "		awaySetScore = :iAwaySetScore,"
+			+ "     homeScoreSum = :iHomeScoreSum,"
+			+ "     awayScoreSum = :iAwayScoreSum "
 			+ " WHERE setNum = 0 ", nativeQuery = true)
-	void updateSetScore(int iHomeSetScore, int iAwaySetScore);
+	void updateSetScore(int iHomeSetScore, int iAwaySetScore, int iHomeScoreSum, int iAwayScoreSum);
 }

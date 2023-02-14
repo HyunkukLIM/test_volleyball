@@ -18,15 +18,15 @@ public class GameService {
 	private GameRepository gameRepository;
 	
 	@Transactional
-	public List<Game> searchGameInfo(String strGameCode) {		
+	public Game searchGameInfo(String strGameCode) {		
 
-		return gameRepository.findByGameCode(strGameCode);
+		return gameRepository.searchGameByGameCode(strGameCode);
 	}	
 	
 	@Transactional
-	public Game searchSetInfo(String strGameCode) {		
+	public List<Game> searchSetInfo(String strGameCode) {		
 
-		return gameRepository.searchsetByGameCode(strGameCode);
+		return gameRepository.findByGameCode(strGameCode);
 	}
 	
 	public void saveGameInfo(GameDto.Request dto) {
@@ -34,9 +34,9 @@ public class GameService {
 		gameRepository.save(dto.toEntity());
 	}
 	
-	public void updateSetInfo(int iHomeSetScore, int iAwaySetScore) {
+	public void updateSetInfo(int iHomeSetScore, int iAwaySetScore, int iHomeScoreSum, int iAwayScoreSum) {
 		
-		gameRepository.updateSetScore(iHomeSetScore, iAwaySetScore);
+		gameRepository.updateSetScore(iHomeSetScore, iAwaySetScore, iHomeScoreSum, iAwayScoreSum);
 	}
 	
 }
