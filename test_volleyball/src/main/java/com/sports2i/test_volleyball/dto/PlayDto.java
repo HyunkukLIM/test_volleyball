@@ -28,6 +28,7 @@ public class PlayDto {
 		private String participantId;
 		private String mainAction;
 		private String detailAction;
+		private int actionSeq;
 		private String openTry;
 		private String openSuccess;
 		private String openBlocked;
@@ -223,6 +224,7 @@ public class PlayDto {
 		private String participantId;
 		private String mainAction;
 		private String detailAction;
+		private int actionSeq;
 		private String openTry;
 		private String openSuccess;
 		private String openBlocked;
@@ -283,6 +285,7 @@ public class PlayDto {
 			this.participantId = play.getParticipantId();
 			this.mainAction = play.getMainAction();
 			this.detailAction = play.getDetailAction();
+			this.actionSeq = play.getActionSeq();
 			this.openTry = play.getOpenTry();
 			this.openSuccess = play.getOpenSuccess();
 			this.openBlocked = play.getOpenBlocked();
