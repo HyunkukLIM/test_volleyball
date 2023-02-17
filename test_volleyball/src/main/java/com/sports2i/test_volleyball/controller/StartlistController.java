@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,22 +21,26 @@ public class StartlistController {
 	@Autowired
 	private StartlistService startlistService;
 	
-	@Autowired
-	private ComputingService computingService;
-	
 	@GetMapping("/api/startlist/selectPlayerList")
 	public ResponseDto<?> searchPlayerList () {
 //		System.out.println("여기까지 들어옴");
 		return new ResponseDto<>(HttpStatus.OK.value(), startlistService.searchPlayerList());
 	}
 	
-	@PostMapping("/api/startlist/insertLineup")
-	public ResponseDto<?> insertLineup (@RequestBody List<StartlistDto.Request> requests) {		
+	@PostMapping("/api/startlist/insertStartlist")
+	public ResponseDto<?> insertStartlist (@RequestBody List<StartlistDto.Request> requests) {		
 //		System.out.println(request);
 		
-		computingService.insertLineup(requests);
+		startlistService.savePlayerInfo(requests);
 		
 		return new ResponseDto<>(HttpStatus.OK.value(), 1);
 	}
-
+	
+	@PutMapping("/api/startlist/deleteStartlist")
+	public ResponseDto<?> deleteStartlist (@RequestBody List<StartlistDto.Request> requests) {
+		
+		startlistService.deletePlayerInfo(requests);
+		
+		return new ResponseDto<>(HttpStatus.OK.value(), 1);
+	}
 }

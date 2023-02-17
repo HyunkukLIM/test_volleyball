@@ -24,9 +24,20 @@ public class StartlistService {
 	}
 	
 	@Transactional
-	public void savePlayerInfo(StartlistDto.Request dto) {
+	public void savePlayerInfo(List<StartlistDto.Request> dtos) {
 		
-		startlistRepository.save(dto.toEntity());
+		for (StartlistDto.Request dto : dtos) {
+			
+			startlistRepository.save(dto.toEntity());
+		}		
 	}
-
+	
+	@Transactional
+	public void deletePlayerInfo(List<StartlistDto.Request> dtos) {
+		
+		for (StartlistDto.Request dto : dtos) {
+			
+			startlistRepository.delete(dto.toEntity());
+		}
+	}
 }
