@@ -25,13 +25,10 @@ public class TeamrosterController {
 		return new ResponseDto<>(HttpStatus.OK.value(), teamrosterService.searchTeamroster());
 	}
 	
-	
 	@PostMapping("/api/team/insertTeamroster")
-	public ResponseDto<?> saveStartlist(@RequestBody List<TeamrosterDto.Request> requests) {
+	public ResponseDto<?> insertTeamroster(@RequestBody List<TeamrosterDto.Request> requests) {
 		
-		for (TeamrosterDto.Request request : requests) {
-			teamrosterService.saveTeamrosterInfo(request);
-		}
+		teamrosterService.saveTeamrosterInfo(requests);
 		
 		return new ResponseDto<>(HttpStatus.OK.value(), 1);
 	}

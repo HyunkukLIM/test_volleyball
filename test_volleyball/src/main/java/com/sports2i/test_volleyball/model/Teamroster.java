@@ -33,6 +33,9 @@ public class Teamroster {
 	@Column(nullable = false)
 	private String role;
 	
+	@CreationTimestamp
+	private Timestamp createdTime;
+	
 	@Column(nullable = false)
 	private String participantName;
 	
@@ -45,10 +48,4 @@ public class Teamroster {
 	
 	@Column(nullable = false)
 	private String participantBIB;
-	
-	@Column(nullable = true)
-	private String lineupStatus;
-	
-	@CreationTimestamp
-	private Timestamp createdTime;
 }

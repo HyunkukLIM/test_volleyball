@@ -24,8 +24,11 @@ public class TeamrosterService {
 	}
 	
 	@Transactional
-	public void saveTeamrosterInfo(TeamrosterDto.Request dto) {
+	public void saveTeamrosterInfo(List<TeamrosterDto.Request> dtos) {
 		
-		teamrosterRepository.save(dto.toEntity());
+		for (TeamrosterDto.Request dto : dtos) {
+			
+			teamrosterRepository.save(dto.toEntity());
+		}
 	}
 }
