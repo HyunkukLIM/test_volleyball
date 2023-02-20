@@ -13,8 +13,6 @@ public class PlayDto {
 	
 	@Data
 	@JsonInclude(Include.NON_NULL)
-//	@AllArgsConstructor
-//	@Builder
 	public static class Request {
 		
 		private String competitionCode;
@@ -78,7 +76,7 @@ public class PlayDto {
 		
 		@Builder
 		private Request(String competitionCode, String gender, String gameCode, int setNum, int rallySeq, int homeScore, int awayScore,
-				String teamId, String participantId, String mainAction, String detailAction, String openTry, String openSuccess, String openBlocked, String openFault,
+				String teamId, String participantId, String mainAction, String detailAction, int actionSeq, String openTry, String openSuccess, String openBlocked, String openFault,
 				String syncTry, String syncSuccess, String syncBlocked, String syncFault, String slideTry, String slideSuccess,
 				String slideBlocked, String slideFault, String backTry, String backSuccess, String backBlocked, String backFault,
 				String quickTry, String quickSuccess, String quickBlocked, String quickFault, String cQuickTry, String cQuickSuccess,
@@ -98,6 +96,7 @@ public class PlayDto {
 			this.participantId = participantId;
 			this.mainAction = mainAction;
 			this.detailAction = detailAction;
+			this.actionSeq = actionSeq;
 			this.openTry = openTry;
 			this.openSuccess = openSuccess;
 			this.openBlocked = openBlocked;
