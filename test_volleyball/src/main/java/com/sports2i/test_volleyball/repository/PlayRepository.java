@@ -3,7 +3,10 @@ package com.sports2i.test_volleyball.repository;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +27,10 @@ public interface PlayRepository extends JpaRepository<Play, Integer>{
 			+ " 		FROM PLAY "
 			+ " 		GROUP BY setNum "
 			+ " 	) MAIN "
-			+ " WHERE setNum = :iSetNum ", nativeQuery = true)
-	Map<String, String> findCurrentScore(int iSetNum);
+//			+ " WHERE setNum = :iSetNum ", nativeQuery = true)
+			+ " ORDER BY setNum DESC"
+			+ " LIMIT 1 ", nativeQuery = true)
+	Map<String, String> findCurrentScore();
 	
 	@Query(value = " SELECT setNum, "
 			+ " SUM(homeScore) AS homeScore,"
@@ -60,4 +65,11 @@ public interface PlayRepository extends JpaRepository<Play, Integer>{
 			+ " ORDER BY rallySeq DESC"
 			+ " LIMIT 5", nativeQuery = true)
 	List<Integer> findLastRallyList();
+	
+	@Modifying
+	@Transactional
+	@Query(value = "DELETE FROM PLAY "
+			+ " WHERE actionSeq >= :iFromActionSeq"
+			+ "  ", nativeQuery = true)
+	void deleteFromActionSeq(int iFromActionSeq);
 }
