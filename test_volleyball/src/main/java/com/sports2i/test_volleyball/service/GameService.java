@@ -23,20 +23,44 @@ public class GameService {
 		return gameRepository.searchGameByGameCode(strGameCode);
 	}	
 	
-	@Transactional
 	public List<Game> searchSetInfo(String strGameCode) {		
 
 		return gameRepository.findByGameCode(strGameCode);
 	}
+	
+	public Game searchSetInfo(String strGameCode, int iSetNum) {		
+
+		return gameRepository.searchGameBySet(strGameCode, iSetNum);
+	}
+	
+//	public void saveGameInfo(GameDto.Request dto) {
+//		
+//		gameRepository.save(dto.toEntity());
+//	}
 	
 	public void saveGameInfo(GameDto.Request dto) {
 		
 		gameRepository.save(dto.toEntity());
 	}
 	
+	public void updateGameStatus(String strGameCode, int iSetNum, String strGameStatus) {
+		
+		gameRepository.updateGameStatus(strGameCode, iSetNum, strGameStatus);
+	}
+	
+	public void updateScore(String strGameCode, int iSetNum, int iHomeScore, int iAwayScore) {
+		
+		gameRepository.updateScore(strGameCode, iSetNum, iHomeScore, iAwayScore);
+	}
+	
 	public void updateSetInfo(int iHomeSetScore, int iAwaySetScore, int iHomeScoreSum, int iAwayScoreSum) {
 		
 		gameRepository.updateSetScore(iHomeSetScore, iAwaySetScore, iHomeScoreSum, iAwayScoreSum);
+	}
+	
+	public void insertSet(GameDto.Request dto) {
+		
+		gameRepository.save(dto.toEntity());
 	}
 	
 }
