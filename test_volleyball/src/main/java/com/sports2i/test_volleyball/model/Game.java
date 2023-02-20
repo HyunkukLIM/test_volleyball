@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @DynamicInsert
+@DynamicUpdate
 public class Game {
 
 	@Column(nullable = false)
@@ -75,27 +77,27 @@ public class Game {
 	@Column(nullable = true)
 	private String awayWL;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	@ColumnDefault("0")
 	private int homeSetScore;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	@ColumnDefault("0")
 	private int awaySetScore;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	@ColumnDefault("0")
 	private int homeScore;
 
-	@Column(nullable = true)
+	@Column(nullable = false)
 	@ColumnDefault("0")
 	private int awayScore;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	@ColumnDefault("0")
 	private int homeScoreSum;	
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	@ColumnDefault("0")
 	private int awayScoreSum;
 	
