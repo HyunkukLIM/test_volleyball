@@ -39,17 +39,17 @@ public class Startlist {
 	private String teamName;
 	
 	@Column(nullable = false)
-	private String startingReserve;
+	private String role;
 	
 	@Id
 	@Column(nullable = false)
 	private String participantId;
-	
-	@Column(nullable = false)
-	private int startingOrder;
-	
+
 	@Column(nullable = false)
 	private String participantName;
+	
+	@Column(nullable = false)
+	private String startingReserve;
 	
 	@Column(nullable = false)
 	private String participantPosition;

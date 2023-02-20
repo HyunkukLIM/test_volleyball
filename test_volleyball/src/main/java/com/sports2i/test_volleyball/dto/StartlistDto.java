@@ -17,17 +17,17 @@ public class StartlistDto {
 		private String homeAway;
 		private String teamId;
 		private String teamName;
-		private String startingReserve;
+		private String role;		
 		private String participantId;
-		private int startingOrder;
 		private String participantName;
+		private String startingReserve;
 		private String participantPosition;
 		private String participantBIB;
 		
 		@Builder
 		public Request(String competitionCode, String gender, String gameCode, String homeAway, String teamId,
-				String teamName, String startingReserve, String participantId, int startingOrder,
-				String participantName, String participantPosition, String participantBIB) {
+				String teamName, String role, String participantId, String participantName, String startingReserve,
+				String participantPosition, String participantBIB) {
 			super();
 			this.competitionCode = competitionCode;
 			this.gender = gender;
@@ -35,14 +35,14 @@ public class StartlistDto {
 			this.homeAway = homeAway;
 			this.teamId = teamId;
 			this.teamName = teamName;
-			this.startingReserve = startingReserve;
+			this.role = role;
 			this.participantId = participantId;
-			this.startingOrder = startingOrder;
 			this.participantName = participantName;
+			this.startingReserve = startingReserve;
 			this.participantPosition = participantPosition;
 			this.participantBIB = participantBIB;
 		}
-		
+
 		public Startlist toEntity() {
 			Startlist startlist = Startlist.builder()
 					.competitionCode(competitionCode)
@@ -51,10 +51,10 @@ public class StartlistDto {
 					.homeAway(homeAway)
 					.teamId(teamId)
 					.teamName(teamName)
-					.startingReserve(startingReserve)
+					.role(role)
 					.participantId(participantId)
-					.startingOrder(startingOrder)
 					.participantName(participantName)
+					.startingReserve(startingReserve)
 					.participantPosition(participantPosition)
 					.participantBIB(participantBIB)
 					.build();
@@ -71,10 +71,10 @@ public class StartlistDto {
 		private String homeAway;
 		private String teamId;
 		private String teamName;
-		private String startingReserve;
+		private String role;		
 		private String participantId;
-		private int startingOrder;
 		private String participantName;
+		private String startingReserve;
 		private String participantPosition;
 		private String participantBIB;
 		
@@ -86,10 +86,10 @@ public class StartlistDto {
 			this.homeAway = startlist.getHomeAway();
 			this.teamId = startlist.getTeamId();
 			this.teamName = startlist.getTeamName();
-			this.startingReserve = startlist.getStartingReserve();
+			this.role = startlist.getRole();
 			this.participantId = startlist.getParticipantId();
-			this.startingOrder = startlist.getStartingOrder();
 			this.participantName = startlist.getParticipantName();
+			this.startingReserve = startlist.getStartingReserve();
 			this.participantPosition = startlist.getParticipantPosition();
 			this.participantBIB = startlist.getParticipantBIB();					
 		}
