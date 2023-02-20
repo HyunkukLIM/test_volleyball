@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,41 +38,67 @@ public class PlayController {
 		return new ResponseDto<>(HttpStatus.OK.value(), playService.searchGameStatus());
 	}
 	
+//	@PostMapping("/api/play/insertPlay")
+//	public ResponseDto<?> savePlayInfo(@RequestBody List<PlayDto.Request> requests) {
+////		System.out.println(request);
+//		
+//		Map<String, String> mResponse = new HashMap<>();
+//		String strActionCase = null;
+//		int iSetNum = 0;
+//		
+//		int iLastRallySeq = playService.searchLastActionSeq();		
+//		
+//		for(PlayDto.Request request : requests) {
+//			//System.out.println(request);
+//			
+//			if (request.getTeamId().equals("SYSTEM")
+//				&& request.getMainAction().equals("START")) {
+//				
+//				strActionCase = "STATUS";
+//			}
+//			else {
+//				
+//				strActionCase = "SCORE";
+//			}
+//			
+//			iSetNum = request.getSetNum();
+//			
+//			playService.savePlayInfo(request, iLastRallySeq);
+//		}
+//		
+//		mResponse = computingService.updateGameInfo(strActionCase, iSetNum);
+////		computingService.updateScore(iSetNum);
+//		
+//		computingService.updateSetScore();
+//		
+//		
+//		// 입력된 경기 상세 테이블을 바탕으로 연산을 실행하여 값(숫자)을 선수 및 팀 누적 기록 테이블에 저장
+//		// 경기 종료 후 경기 상세 테이블을 바탕으로 연산을 실행하여 값(숫자)을 선수 및 팀 범실 누적 기록 테이블에 저장		
+//		
+//		return new ResponseDto<>(HttpStatus.OK.value(), mResponse);
+//	}
+	
 	@PostMapping("/api/play/insertPlay")
 	public ResponseDto<?> savePlayInfo(@RequestBody List<PlayDto.Request> requests) {
 //		System.out.println(request);
 		
 		Map<String, String> mResponse = new HashMap<>();
-		String strActionCase = null;
-		int iSetNum = 0;
+	
+		String strActionCase = playService.savePlayInfo(requests);
 		
-		int iLastRallySeq = playService.searchLastActionSeq();		
-		
-		for(PlayDto.Request request : requests) {
-			//System.out.println(request);
-			
-			if (request.getTeamId().equals("SYSTEM")
-				&& request.getMainAction().equals("START")) {
-				
-				strActionCase = "STATUS";
-			}
-			else {
-				
-				strActionCase = "SCORE";
-			}
-			
-			iSetNum = request.getSetNum();
-			
-			playService.savePlayInfo(request, iLastRallySeq);
-		}
-		
-		mResponse = computingService.updateGameInfo(strActionCase, iSetNum);
+		mResponse = computingService.updateGameInfo(strActionCase);
 		computingService.updateSetScore();
 		
-		
-		// 입력된 경기 상세 테이블을 바탕으로 연산을 실행하여 값(숫자)을 선수 및 팀 누적 기록 테이블에 저장
-		// 경기 종료 후 경기 상세 테이블을 바탕으로 연산을 실행하여 값(숫자)을 선수 및 팀 범실 누적 기록 테이블에 저장		
-		
 		return new ResponseDto<>(HttpStatus.OK.value(), mResponse);
+	}
+	
+	@PostMapping("/api/play/deletePlay")
+	public ResponseDto<?> deletePlayInfo(@RequestBody PlayDto.Request request) {
+		
+		Map<String, String> mResponse = new HashMap<>();
+		
+		mResponse = playService.deletePlayList(request);
+		
+		return new ResponseDto<>(HttpStatus.OK.value(),mResponse);
 	}
 }
