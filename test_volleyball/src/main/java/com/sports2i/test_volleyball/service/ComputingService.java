@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.sports2i.test_volleyball.dto.GameDto;
 import com.sports2i.test_volleyball.dto.StartlistDto;
+import com.sports2i.test_volleyball.dto.TeamrosterDto;
 import com.sports2i.test_volleyball.model.Game;
 
 @Service
@@ -26,89 +27,122 @@ public class ComputingService {
 	@Autowired
 	private StartlistService startlistService;
 	
-	@Transactional
-	public Map<String, String> updateGameInfo(String strActionCase, int iSetNum) {
+//	public void updateScore(int iSetNum) {
+//
+//		String strGameCode = "22-23VMENR3-123";
+//
+//		Map<String, String> currentScore = new HashMap<String, String>();
+//		currentScore = playService.searchCurrentScore(iSetNum);
+//
+////		System.out.println(currentScore.get("setNum"));
+////		System.out.println(String.valueOf(currentScore.get("homeScore")));
+////		System.out.println(String.valueOf(currentScore.get("awayScore")));
+//
+//		int iSetNum = Integer.parseInt(String.valueOf(currentScore.get("setNum")));
+//		int iHomeScore = Integer.parseInt(String.valueOf(currentScore.get("homeScore")));
+//		int iAwayScore = Integer.parseInt(String.valueOf(currentScore.get("awayScore")));
+//		int iHomeSetScore = 0;
+//		int iAwaySetScore = 0;
+//		int iHomeScoreSum = 0;
+//		int iAwayScoreSum = 0;
+//
+//		List<Game> listGameInfo = gameService.searchSetInfo(strGameCode);
+////		List<Game> listUpdateGameInfo = new ArrayList<>();
+//
+//		// 세트 별 경기 정보 업데이트
+//		for (Game gameInfo : listGameInfo) {
+//
+//			if (iSetNum == gameInfo.getSetNum()) {
+//
+//				GameDto.Request requestScore = GameDto.Request.builder()
+//						.gameCode(gameInfo.getGameCode())
+//						.awayScore(iAwayScore)
+//						.awayScoreSum(iAwayScoreSum)
+//						.awaySetScore(iAwaySetScore)
+//						.awayTeam(gameInfo.getAwayTeam())
+//						.awayWL(null)
+//						.broadcaster(null)
+//						.competitionCode(gameInfo.getCompetitionCode())
+//						.gameDate(gameInfo.getGameDate())
+//						.gameDay(null)
+//						.gameLocation(null)
+//						.gameNum(gameInfo.getGameNum())
+//						.gameStatus(null)
+//						.gameTime(null)
+//						.gender(gameInfo.getGender())
+//						.homeScore(iHomeScore)
+//						.homeScoreSum(iHomeScoreSum)
+//						.homeSetScore(iHomeSetScore)
+//						.homeTeam(gameInfo.getHomeTeam())
+//						.homeWL(null)
+//						.roundSeq(gameInfo.getRoundSeq())
+//						.setNum(gameInfo.getSetNum())
+//						.setTime(0)
+//						.spectatorNumber(null)
+//						.totalSetTime(0)				
+//						.build();
+//
+//				gameService.saveGameInfo(requestScore);
+//
+////				listUpdateGameInfo.add(updateGameInfo);
+//			}
+//		}
+//
+////		updateSetScore(listUpdateGameInfo);
+//	}	
+	
+	
+	public Map<String, String> updateGameInfo(String strActionCase) {
 		
 		String strGameCode = "22-23VMENR3-123";
 		String strGameStatus = null;
-		Map<String, String> mResponse = new HashMap<>(); 
+		String strHomeTeam = null;
+		String strAwayTeam = null;
 		
+		Map<String, String> mResponse = new HashMap<>();
+		
+		Map<String, String> currentScore = playService.searchCurrentScore();
+		
+		int iSetNum = Integer.parseInt(String.valueOf(currentScore.get("setNum")));
 		int iHomeScore = 0;
 		int iAwayScore = 0;
 		
 		switch(strActionCase) {
 		
-		case "STATUS" :
-				
-			Map<String, String> gameStatus = playService.searchGameStatus();
-			
-			String strMainAction = gameStatus.get("mainAction");
-			
-			switch(strMainAction) {
-			
-			case "START" : 
-				strGameStatus = "LIVE";
-				mResponse.put("Response", strGameStatus);
-				break;
-				
-			case "END" : 
-				strGameStatus = "INTERMEDIATE";
-				mResponse.put("Response", strGameStatus);
-				break;
-			}
-			
-			break;
-			
-		case "SCORE" :
-			
-			Map<String, String> currentScore = playService.searchCurrentScore(iSetNum);
+			case "STATUS" :
 					
-			iHomeScore = Integer.parseInt(String.valueOf(currentScore.get("homeScore")));
-			iAwayScore = Integer.parseInt(String.valueOf(currentScore.get("awayScore")));
-			
-			mResponse.put("Response", "점수 입력 완료!");
-			
-			break;
-		}
-		
-		List<Game> listGameInfo = gameService.searchSetInfo(strGameCode);
-		
-		// 세트 별 경기 정보 업데이트
-		for (Game gameInfo : listGameInfo) {
-			
-			if (iSetNum == gameInfo.getSetNum()) {
+				Map<String, String> gameStatus = playService.searchGameStatus();
 				
-				GameDto.Request requestScore = GameDto.Request.builder()
-						.gameCode(gameInfo.getGameCode())
-						.awayScore(iAwayScore)
-						.awayScoreSum(0)
-						.awaySetScore(0)
-						.awayTeam(gameInfo.getAwayTeam())
-						.awayWL(null)
-						.broadcaster(null)
-						.competitionCode(gameInfo.getCompetitionCode())
-						.gameDate(gameInfo.getGameDate())
-						.gameDay(null)
-						.gameLocation(null)
-						.gameNum(gameInfo.getGameNum())
-						.gameStatus(strGameStatus)
-						.gameTime(null)
-						.gender(gameInfo.getGender())
-						.homeScore(iHomeScore)
-						.homeScoreSum(0)
-						.homeSetScore(0)
-						.homeTeam(gameInfo.getHomeTeam())
-						.homeWL(null)
-						.roundSeq(gameInfo.getRoundSeq())
-						.setNum(gameInfo.getSetNum())
-						.setTime(0)
-						.spectatorNumber(null)
-						.totalSetTime(0)				
-						.build();
+				String strMainAction = gameStatus.get("mainAction");
 				
-				gameService.saveGameInfo(requestScore);
-			}
-		}
+				switch(strMainAction) {
+				
+				case "START" : 
+					strGameStatus = "LIVE";
+					mResponse.put("Response", strGameStatus);
+					break;
+					
+				case "END" : 
+					strGameStatus = "INTERMEDIATE";
+					mResponse.put("Response", strGameStatus);
+					break;
+				}
+				
+				gameService.updateGameStatus(strGameCode, iSetNum, strGameStatus);
+				
+				break;
+			
+			case "SCORE" :
+										
+				iHomeScore = Integer.parseInt(String.valueOf(currentScore.get("homeScore")));
+				iAwayScore = Integer.parseInt(String.valueOf(currentScore.get("awayScore")));
+				
+				gameService.updateScore(strGameCode, iSetNum, iHomeScore, iAwayScore);
+				
+				mResponse.put("", "점수 입력 완료!");
+				
+				break;
+			}		
 		
 		return mResponse;
 	}
@@ -169,7 +203,7 @@ public class ComputingService {
 //	gameService.saveSetInfo(requestSetScore);				
 //}
 	
-	@Transactional	
+		
 	public void updateSetScore() {
 		
 		List<Map<String, String>> listCurrentScore = new ArrayList<>();
@@ -207,18 +241,10 @@ public class ComputingService {
 		
 	}
 	
-	@Transactional
+
 	public void updateGameStatus() {
 		
 		
 	}
-	
-	@Transactional
-	public void insertLineup(List<StartlistDto.Request> requests) {
-		
-		for (StartlistDto.Request request : requests) {
-			
-			startlistService.savePlayerInfo(request);
-		}
-	}
+
 }
