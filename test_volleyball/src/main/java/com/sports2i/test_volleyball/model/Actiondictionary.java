@@ -27,7 +27,7 @@ public class Actiondictionary {
 	private int codeOrder;
 	
 	@Id
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "varbinary(255)")
 	private String mainCode;
 	
 	@Column(nullable = false)
