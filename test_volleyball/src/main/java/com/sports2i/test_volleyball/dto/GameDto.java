@@ -1,5 +1,7 @@
 package com.sports2i.test_volleyball.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.sports2i.test_volleyball.model.Game;
 
 import lombok.Builder;
@@ -7,8 +9,10 @@ import lombok.Data;
 import lombok.Getter;
 
 @Data
+@JsonInclude(Include.NON_NULL)
 public class GameDto {
 	
+
 	public static class Request {
 		
 		private String competitionCode;		
