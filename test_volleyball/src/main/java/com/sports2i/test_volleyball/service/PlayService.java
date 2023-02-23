@@ -220,8 +220,7 @@ public class PlayService {
 		
 		for (PlayDto.Request dto : dtos) {
 			
-			if (dto.getTeamId().equals("SYSTEM")  
-				&& dto.getMainAction().equals("START")) {
+			if (dto.getTeamId().equals("SYSTEM")) {
 			
 				playRepository.save(dto.toEntity());
 				
