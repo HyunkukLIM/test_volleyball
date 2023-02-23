@@ -56,4 +56,12 @@ public interface GameRepository extends JpaRepository<Game, Integer>{
 			+ "     awayScoreSum = :iAwayScoreSum "
 			+ " WHERE setNum = 0 ", nativeQuery = true)
 	void updateSetScore(int iHomeSetScore, int iAwaySetScore, int iHomeScoreSum, int iAwayScoreSum);
+	
+	@Modifying
+	@Transactional
+	@Query(value = "UPDATE GAME "
+			+ "		SET gameTime = :strSetTime"
+			+ " WHERE setNum = :iSetNum"
+			+ "  ", nativeQuery = true)
+	void updateSetTime(String strSetTime, int iSetNum);
 }

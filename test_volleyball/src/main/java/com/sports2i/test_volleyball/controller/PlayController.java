@@ -78,6 +78,12 @@ public class PlayController {
 //		return new ResponseDto<>(HttpStatus.OK.value(), mResponse);
 //	}
 	
+	@GetMapping("/api/play/selectSetTime")
+	public ResponseDto<?> searchSetTime () {
+
+		return new ResponseDto<>(HttpStatus.OK.value(), playService.searchSetTime());
+	}
+	
 	@PostMapping("/api/play/insertPlay")
 	public ResponseDto<?> savePlayInfo(@RequestBody List<PlayDto.Request> requests) {
 //		System.out.println(request);
@@ -88,6 +94,9 @@ public class PlayController {
 		
 		mResponse = computingService.updateGameInfo(strActionCase);
 		computingService.updateSetScore();
+		
+		if (strActionCase.equals("STATUS"))
+				computingService.updateSetTime();
 		
 		return new ResponseDto<>(HttpStatus.OK.value(), mResponse);
 	}

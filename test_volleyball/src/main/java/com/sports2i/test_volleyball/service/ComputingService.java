@@ -1,6 +1,9 @@
 package com.sports2i.test_volleyball.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sports2i.test_volleyball.dto.GameDto;
+import com.sports2i.test_volleyball.dto.PlayDto;
 import com.sports2i.test_volleyball.dto.StartlistDto;
 import com.sports2i.test_volleyball.dto.TeamrosterDto;
 import com.sports2i.test_volleyball.model.Game;
+import com.sports2i.test_volleyball.repository.PlayDtoTime;
 
 @Service
 public class ComputingService {
@@ -236,15 +241,50 @@ public class ComputingService {
 		gameService.updateSetInfo(iHomeSetScore, iAwaySetScore, iHomeScoreSum, iAwayScoreSum);		
 	}
 	
+	
 	public void updateSetTime() {
 		
+		List<PlayDtoTime> listSetTime = new ArrayList<>();
+		listSetTime = playService.searchSetTime();
 		
-	}
-	
-
-	public void updateGameStatus() {
+		boolean bStartTime = false;
+		boolean bEndTime = false;
 		
+		Date startTime = null;
+		Date endTime = null;
+		int iSetNum = 0;
 		
+		for (PlayDtoTime setTime : listSetTime) {
+			
+			iSetNum = setTime.getSetNum();
+			
+			switch (setTime.getMainAction()) {
+			
+			case "START" :
+				startTime = setTime.getCreatedTime();
+				bStartTime = true;
+					
+				break;
+				
+			case "END" :
+				endTime = setTime.getCreatedTime();
+				bEndTime = true;
+				
+				break;			
+			}
+			
+			if (bStartTime && bEndTime) {
+				
+				Map<Integer, String> mdiffTime = new HashMap<>();
+				long diffTime = (endTime.getTime() - startTime.getTime()) / 60000;
+				String strDiffTime = Long.toString(diffTime);
+				mdiffTime.put(iSetNum, strDiffTime);
+				bStartTime = false;
+				bEndTime = false;
+				
+				gameService.updateSetTime(strDiffTime, iSetNum);
+			}
+		}
 	}
 
 }

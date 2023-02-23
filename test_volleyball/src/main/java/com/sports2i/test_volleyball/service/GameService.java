@@ -58,6 +58,11 @@ public class GameService {
 		gameRepository.updateSetScore(iHomeSetScore, iAwaySetScore, iHomeScoreSum, iAwayScoreSum);
 	}
 	
+	public void updateSetTime(String strSetTime, int iSetNum) {
+		
+		gameRepository.updateSetTime(strSetTime, iSetNum);
+	}
+	
 	public void insertSet(GameDto.Request dto) {
 		
 		gameRepository.save(dto.toEntity());

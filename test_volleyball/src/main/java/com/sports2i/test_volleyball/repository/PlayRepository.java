@@ -18,6 +18,8 @@ public interface PlayRepository extends JpaRepository<Play, Integer>{
 	
 //	Play findByRallySeq(int iLastRallySeq);
 	
+	Play findByActionSeq(int actionSeq);
+	
 	@Query(value = " SELECT * "
 			+ " FROM"
 			+ " 	( "
@@ -46,9 +48,7 @@ public interface PlayRepository extends JpaRepository<Play, Integer>{
 			+ " WHERE teamId = 'SYSTEM' "
 			+ " ORDER BY actionSeq DESC "
 			+ " LIMIT 1 ", nativeQuery = true)
-	Map<String, String> findGameStatus();
-	
-	Play findByActionSeq(int actionSeq);
+	Map<String, String> findGameStatus();	
 	
 	@Query(value = "SELECT * "
 			+ " FROM PLAY "
@@ -65,6 +65,17 @@ public interface PlayRepository extends JpaRepository<Play, Integer>{
 			+ " ORDER BY rallySeq DESC"
 			+ " LIMIT 5", nativeQuery = true)
 	List<Integer> findLastRallyList();
+	
+	
+	@Query(value = "SELECT "
+			+ "				setNum, "
+			+ "				createdTime, "
+			+ "				teamId, "
+			+ "				participantId, "
+			+ "				mainAction "
+			+ " FROM PLAY "
+			+ " WHERE teamId = 'SYSTEM' ", nativeQuery = true)
+	List<PlayDtoTime> findSetTime();
 	
 	@Modifying
 	@Transactional
