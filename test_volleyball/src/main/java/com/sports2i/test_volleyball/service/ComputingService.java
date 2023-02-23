@@ -34,7 +34,7 @@ public class ComputingService {
 	
 //	public void updateScore(int iSetNum) {
 //
-//		String strGameCode = "22-23VMENR3-123";
+//		String strGameCode = "22-23VMENR3-123-0";
 //
 //		Map<String, String> currentScore = new HashMap<String, String>();
 //		currentScore = playService.searchCurrentScore(iSetNum);
@@ -99,7 +99,7 @@ public class ComputingService {
 	
 	public Map<String, String> updateGameInfo(String strActionCase) {
 		
-		String strGameCode = "22-23VMENR3-123";
+		String strGameCode = "22-23VMENR3-123-0";
 		String strGameStatus = null;
 		String strHomeTeam = null;
 		String strAwayTeam = null;

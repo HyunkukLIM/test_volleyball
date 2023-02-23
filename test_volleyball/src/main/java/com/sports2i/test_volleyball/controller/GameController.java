@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sports2i.test_volleyball.dto.GameDto;
 import com.sports2i.test_volleyball.dto.ResponseDto;
-import com.sports2i.test_volleyball.model.Game;
 import com.sports2i.test_volleyball.service.GameService;
 
 @RestController
@@ -21,7 +20,7 @@ public class GameController {
 	@GetMapping("/api/game/selectGame")
 	public ResponseDto<?> searchGameInfo() {
 		
-		String strGameCode = "22-23VMENR3-123";
+		String strGameCode = "22-23VMENR3-123-0";
 		
 		return new ResponseDto<>(HttpStatus.OK.value(), gameService.searchGameInfo(strGameCode));
 	}
@@ -29,7 +28,7 @@ public class GameController {
 	@GetMapping("/api/game/selectSet")
 	public ResponseDto<?> searchSetInfo() {
 		
-		String strGameCode = "22-23VMENR3-123";
+		String strGameCode = "22-23VMENR3-123-0";
 		
 		return new ResponseDto<>(HttpStatus.OK.value(), gameService.searchSetInfo(strGameCode));
 	}
