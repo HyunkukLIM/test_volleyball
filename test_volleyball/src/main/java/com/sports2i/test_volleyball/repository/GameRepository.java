@@ -60,7 +60,7 @@ public interface GameRepository extends JpaRepository<Game, Integer>{
 	@Modifying
 	@Transactional
 	@Query(value = "UPDATE GAME "
-			+ "		SET gameTime = :strSetTime"
+			+ "		SET setTime = :strSetTime"
 			+ " WHERE setNum = :iSetNum"
 			+ "  ", nativeQuery = true)
 	void updateSetTime(String strSetTime, int iSetNum);
