@@ -37,6 +37,7 @@ public class Game {
 	@Column(nullable = false)
 	private int gameNum;
 	
+	@Id
 	@Column(nullable = false)
 	private String gameCode;
 	
@@ -61,7 +62,6 @@ public class Game {
 	@Column(nullable = true)
 	private String broadcaster;
 	
-	@Id
 	@Column(nullable = false)
 	private int setNum;
 	
