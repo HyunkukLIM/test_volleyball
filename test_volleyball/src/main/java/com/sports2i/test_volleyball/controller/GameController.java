@@ -21,9 +21,9 @@ public class GameController {
 	@GetMapping("/api/game/selectGame/{gameInfo}")
 	public ResponseDto<?> searchGameInfo(@PathVariable("gameInfo") String gameInfo) {
 		
-		String strGameDate = gameInfo.substring(5);
-		String strGender = gameInfo.substring(6, 7);
-		int iGameNum = Integer.parseInt(gameInfo.substring(7, 9));
+		String strGameDate = gameInfo.substring(0, 10);
+		String strGender = gameInfo.substring(10, 11);
+		int iGameNum = Integer.parseInt(gameInfo.substring(11, 14));
 		
 		return new ResponseDto<>(HttpStatus.OK.value(), gameService.searchGameInfo(strGameDate, strGender, iGameNum));
 	}
