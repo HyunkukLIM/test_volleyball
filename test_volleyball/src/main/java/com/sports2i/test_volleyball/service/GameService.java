@@ -23,9 +23,9 @@ public class GameService {
 		return gameRepository.searchGameByGameCode(strGameCode);
 	}	
 	
-	public List<Game> searchSetInfo(String strGameCode) {		
+	public List<Game> searchSetInfo(int iGameNum) {		
 
-		return gameRepository.findByGameCode(strGameCode);
+		return gameRepository.findByGameNum(iGameNum);
 	}
 	
 	public Game searchSetInfo(String strGameCode, int iSetNum) {		

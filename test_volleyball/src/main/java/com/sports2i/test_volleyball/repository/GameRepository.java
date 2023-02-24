@@ -14,7 +14,7 @@ import com.sports2i.test_volleyball.model.Game;
 @Repository
 public interface GameRepository extends JpaRepository<Game, Integer>{
 
-	List<Game> findByGameCode(String strGameCode);
+	List<Game> findByGameNum(int iGameNum);
 	
 	@Query(value = "SELECT * "
 			+ " FROM GAME "
