@@ -18,9 +18,9 @@ public class GameService {
 	private GameRepository gameRepository;
 	
 	@Transactional
-	public Game searchGameInfo(String strGameCode) {		
+	public Game searchGameInfo(String strGameDate, String strGender, int iGameNum) {		
 
-		return gameRepository.searchGameByGameCode(strGameCode);
+		return gameRepository.searchGameByGameInfo(strGameDate, strGender, iGameNum);
 	}	
 	
 	public List<Game> searchSetInfo(int iGameNum) {		

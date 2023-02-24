@@ -24,9 +24,11 @@ public interface GameRepository extends JpaRepository<Game, Integer>{
 	
 	@Query(value = "SELECT * "
 			+ " FROM GAME "
-			+ " WHERE gameCode = :strGameCode "
+			+ " WHERE gameDate = :strGameDate "
+			+ "	AND gender = :strGender "
+			+ "	AND gameNum = :iGameNum "
 			+ " AND setNum = 0 ", nativeQuery = true)
-	Game searchGameByGameCode(String strGameCode);
+	Game searchGameByGameInfo(String strGameDate, String strGender, int iGameNum);
 
 	@Modifying
 	@Transactional
