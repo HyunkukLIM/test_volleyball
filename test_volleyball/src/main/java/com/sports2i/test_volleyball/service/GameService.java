@@ -1,5 +1,6 @@
 package com.sports2i.test_volleyball.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -18,16 +19,34 @@ public class GameService {
 	private GameRepository gameRepository;
 	
 	@Transactional
-	public Game searchGameInfo(String strGameDate, String strGender, int iGameNum) {		
+	public List<GameDto.Response> searchGame(String strCompetitionCode, String strGameDate) {
+		
+		List<GameDto.Response> listGameReponse = new ArrayList<>();
+		List<Game> listGame = new ArrayList<>();
+		
+		listGame = gameRepository.searchGame(strCompetitionCode, strGameDate);
+		
+		for (Game game : listGame) {
+			
+			listGameReponse.add(new GameDto.Response(game));
+		}
+		
+		return listGameReponse;
+	}
+	
+	@Transactional
+	public GameDto.Response searchGameInfo(String strGameDate, String strGender, int iGameNum) {
 
-		return gameRepository.searchGameByGameInfo(strGameDate, strGender, iGameNum);
+		return new GameDto.Response(gameRepository.searchGameByGameInfo(strGameDate, strGender, iGameNum));
 	}	
 	
+	@Transactional
 	public List<Game> searchSetInfo(int iGameNum) {		
 
 		return gameRepository.findByGameNum(iGameNum);
 	}
 	
+	@Transactional
 	public Game searchSetInfo(String strGameCode, int iSetNum) {		
 
 		return gameRepository.searchGameBySet(strGameCode, iSetNum);

@@ -9,11 +9,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sports2i.test_volleyball.model.Game;
 
 @Repository
-public interface GameRepository extends JpaRepository<Game, Integer>{
-
+public interface GameRepository extends JpaRepository<Game, Integer>, GameRepositoryCustom {
+	
 	List<Game> findByGameNum(int iGameNum);
 	
 	@Query(value = "SELECT * "
@@ -21,6 +22,12 @@ public interface GameRepository extends JpaRepository<Game, Integer>{
 			+ " WHERE gameCode = :strGameCode "
 			+ " AND setNum = :iSetNum ", nativeQuery = true)
 	Game searchGameBySet(String strGameCode, int iSetNum);
+	
+	@Query(value = "SELECT * "
+			+ " FROM GAME "
+			+ " WHERE (competitionCode is null or competitionCode = :strCompeitionCode) " 
+			+ " AND (gameDate is null or gameDate = :strGameDate)", nativeQuery = true)
+	List<Game> searchGameByCompetitionCode(String strCompeitionCode, String strGameDate);	
 	
 	@Query(value = "SELECT * "
 			+ " FROM GAME "

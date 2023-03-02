@@ -24,8 +24,7 @@ public class SecurityConfig {
 	        
 	        .authorizeRequests()
 	        .antMatchers("/","/auth/**","/js/**","/css/**", "/images/**",
-	        		"/api/play/**", "/api/startlist/**", "/api/team/**", 
-	        		"/api/game/**", "/api/competition/**", "/api/code/**" ).permitAll()
+	        		"/api/**", "/api/code/**" ).permitAll()
 	            .anyRequest()
 	            .authenticated()
 	        
